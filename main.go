@@ -4,6 +4,7 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
+	"jay-lane.com/hackathon/gpt"
 	"jay-lane.com/hackathon/pdf"
 	"jay-lane.com/hackathon/structs"
 )
@@ -20,7 +21,7 @@ func main() {
 		var downloadable structs.Downloadable
 
 		err := c.BindJSON(&downloadable)
-
+		err = gpt.SendDownloadableToChatGPT(downloadable)
 		if err != nil {
 			c.JSON(http.StatusBadRequest, gin.H{
 				"message": err.Error(),

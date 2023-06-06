@@ -38,11 +38,11 @@ func SendDownloadableToChatGPT(d structs.Downloadable) (err error) {
 	ctx := context.Background()
 
 	res, err := c.Send(ctx, &chatgpt.ChatCompletionRequest{
-		Model: chatgpt.GPT4,
+		Model: chatgpt.GPT35Turbo0301,
 		Messages: []chatgpt.ChatMessage{
 			{
 				Role:    chatgpt.ChatGPTModelRoleSystem,
-				Content: ,
+				Content: "write me a 3 page document on " + d.Description,
 			},
 		},
 	})
