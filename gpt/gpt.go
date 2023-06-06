@@ -28,11 +28,11 @@ func GetClient() (chatgpt.Client, error) {
 	return *Client, nil
 }
 
-func SendDownloadableToChatGPT(d structs.Downloadable) (err error) {
+func SendDownloadableToChatGPT(d structs.Downloadable) (up *structs.Downloadable, err error) {
 	c, err := GetClient()
 
 	if err != nil {
-		return err
+		return nil, err
 	}
 
 	ctx := context.Background()
@@ -42,17 +42,17 @@ func SendDownloadableToChatGPT(d structs.Downloadable) (err error) {
 		Messages: []chatgpt.ChatMessage{
 			{
 				Role:    chatgpt.ChatGPTModelRoleSystem,
-				Content: "write me a 3 page document on " + d.Description,
+				Content: "write me a 700 words on " + d.Description,
 			},
 		},
 	})
 	if err != nil {
 		log.Fatal(err)
 	}
-
+	d.ChatGPTResponse = res
 	a, _ := json.MarshalIndent(res, "", "  ")
 
 	log.Println(string(a))
 
-	return nil
+	return &d, nil
 }
