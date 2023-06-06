@@ -42,7 +42,7 @@ func SendDownloadableToChatGPT(d structs.Downloadable) (err error) {
 		Messages: []chatgpt.ChatMessage{
 			{
 				Role:    chatgpt.ChatGPTModelRoleSystem,
-				Content: "Hey, Explain GoLang to me in 2 sentences.",
+				Content: ,
 			},
 		},
 	})
