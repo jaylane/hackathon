@@ -15,11 +15,12 @@ func TestPage() {
 
 func BuildPDF(d *structs.Downloadable) {
 	pdf := fpdf.New("P", "mm", "A4", "")
+	pdf.SetAutoPageBreak(true, 2)
 	pdf.AddPage()
-	pdf.SetFont("Arial", "B", 20)
-	pdf.Cell(50, 30, d.Title)
+	pdf.SetFont("Arial", "B", 26)
+	pdf.CellFormat(200, 200, d.Title, "", 1, "CM", false, 0, "")
 	pdf.SetFont("Arial", "B", 16)
-	pdf.Cell(50, 40, d.AuthorName)
+	pdf.CellFormat(-200, -200, "by "+d.AuthorName, "", 2, "CM", false, 0, "")
 	pdf.AddPage()
 	pdf.Cell(20, 20, string(d.ChatGPTResponse.Choices[0].Message.Content))
 	pdf.OutputFileAndClose(d.Filename + ".pdf")
