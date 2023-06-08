@@ -10,5 +10,6 @@ type Downloadable struct {
 	Title           string                `json:"title"`
 	AuthorName      string                `json:"authorName"`
 	Filename        string                `json:"filename"`
+	LogoURL         string                `json:"logoUrl"`
 	ChatGPTResponse *chatgpt.ChatResponse `json:"data omitempty"`
 }
