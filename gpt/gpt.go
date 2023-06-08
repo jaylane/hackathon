@@ -47,7 +47,7 @@ func SendDownloadableToChatGPT(d structs.Downloadable) (up *structs.Downloadable
 		},
 	})
 	if err != nil {
-		log.Fatal(err)
+		return nil, err
 	}
 	d.ChatGPTResponse = res
 	a, _ := json.MarshalIndent(res, "", "  ")
