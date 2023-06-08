@@ -42,7 +42,7 @@ func SendDownloadableToChatGPT(d structs.Downloadable) (up *structs.Downloadable
 		Messages: []chatgpt.ChatMessage{
 			{
 				Role:    chatgpt.ChatGPTModelRoleSystem,
-				Content: "create a checklist based on this course description " + d.Description,
+				Content: "limit result to 1000 words create a unique checklist based on this topic: " + d.Description,
 			},
 		},
 	})
